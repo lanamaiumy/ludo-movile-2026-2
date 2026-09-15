@@ -39,7 +39,7 @@ A checklist acima é atualizada a cada Checkpoint da disciplina.
 
 Os protótipos de alta fidelidade foram desenvolvidos no Figma, com paleta de tons pastéis de azul e mascote interativo, seguindo princípios de design inclusivo e acessibilidade cognitiva:
 
-**[Visualizar protótipos no Figma](COLE_AQUI_O_LINK_PUBLICO_DO_FIGMA)**
+**[Visualizar protótipos no Figma](https://www.figma.com/design/aLJO24MYCTjUxijrCnMuTS/Untitled?node-id=0-1&p=f&t=0VFaLrOjCbPMc8eg-0)**
 
 Os fluxos prototipados cobrem: autenticação e entrada, área de gestão do mediador (PIN, volume máximo, tempo de sessão e utilização da semana) e a jornada da criança (trilha de cenários e tela de reprodução sonora).
 
