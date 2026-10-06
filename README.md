@@ -104,16 +104,16 @@ Sprints semanais alinhadas ao cronograma da disciplina, até a entrega final em 
 
 | Sprint | Período | Objetivo | Estimativa |
 |---|---|---|---|
-| 1 | 14/09 – 20/09 | Criação do repositório público, documentação do Checkpoint 1, migração da base de código existente e definição do workflow de commits | 1 semana |
-| 2 | 21/09 – 27/09 | Revisão do roteamento com Expo Router: grupos de rotas `(child)` e `(parent)`, proteção de navegação da área do responsável | 1 semana |
-| 3 | 28/09 – 04/10 | Migração da estilização para NativeWind, unificando o tema (paleta pastel, tipografia) | 1 semana |
-| 4 | 05/10 – 11/10 | Refinamento de componentes reutilizáveis (player, trilha, cards de configuração) e avaliação da biblioteca React Native Elements | 1 semana |
-| 5 | 12/10 – 18/10 | **Checkpoint 2 — entrega parcial**: consolidação das sprints anteriores, atualização da checklist e testes de regressão | 1 semana |
-| 6 | 19/10 – 25/10 | Persistência local com SQLite: tabelas de configuração, histórico de sessões e progresso da trilha | 1 semana |
-| 7 | 26/10 – 01/11 | Validação de dados com Zod nos formulários de login, cadastro e configurações do responsável | 1 semana |
-| 8 | 02/11 – 08/11 | Mapa de locais sensorialmente amigáveis com marcadores (módulo de mapas do React Native) | 1 semana |
-| 9 | 09/11 – 15/11 | Sistema de recompensas visuais e substituição dos áudios reservados por sons reais | 1 semana |
-| 10 | 16/11 – 22/11 | Empacotamento com EAS Build e testes de distribuição interna | 1 semana |
-| 11 | 23/11 – 29/11 | **Checkpoint final — entrega do aplicativo**: correções finais, cobertura de testes e atualização completa da documentação | 1 semana |
+| 1 | 14/09 a 20/09 | Criação do repositório público, documentação do Checkpoint 1, migração da base de código existente e definição do workflow de commits | 1 semana |
+| 2 | 21/09 a 27/09 | Revisão do roteamento com Expo Router: grupos de rotas `(child)` e `(parent)`, proteção de navegação da área do responsável | 1 semana |
+| 3 | 28/09 a 04/10 | Migração da estilização para NativeWind, unificando o tema (paleta pastel, tipografia) | 1 semana |
+| 4 | 05/10 a 11/10 | Refinamento de componentes reutilizáveis (player, trilha, cards de configuração) e avaliação da biblioteca React Native Elements | 1 semana |
+| 5 | 12/10 a 18/10 | **Checkpoint 2 (entrega parcial)**: consolidação das sprints anteriores, atualização da checklist e testes de regressão | 1 semana |
+| 6 | 19/10 a 25/10 | Persistência local com SQLite: tabelas de configuração, histórico de sessões e progresso da trilha | 1 semana |
+| 7 | 26/10 a 01/11 | Validação de dados com Zod nos formulários de login, cadastro e configurações do responsável | 1 semana |
+| 8 | 02/11 a 08/11 | Mapa de locais sensorialmente amigáveis com marcadores (módulo de mapas do React Native) | 1 semana |
+| 9 | 09/11 a 15/11 | Sistema de recompensas visuais e substituição dos áudios reservados por sons reais | 1 semana |
+| 10 | 16/11 a 22/11 | Empacotamento com EAS Build e testes de distribuição interna | 1 semana |
+| 11 | 23/11 a 29/11 | **Checkpoint final (entrega do aplicativo)**: correções finais, cobertura de testes e atualização completa da documentação | 1 semana |
 
 Os riscos previstos concentram-se nas Sprints 6 e 8 (SQLite e Mapas), por envolverem módulos novos; caso necessário, a Sprint 9 atua como folga de contingência, priorizando os requisitos obrigatórios sobre os adicionais.
