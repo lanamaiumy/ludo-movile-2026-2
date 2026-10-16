@@ -40,7 +40,7 @@ export default function LoginScreen() {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['left', 'right', 'bottom']}>
         <View style={styles.header}>
           <Logo size={44} />
           <Text style={styles.subtitle}>Faça login ou registre-se!</Text>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginTop: 48,
+    marginTop: 24,
     marginBottom: 32,
   },
   subtitle: {

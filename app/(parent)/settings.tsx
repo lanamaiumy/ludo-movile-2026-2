@@ -77,7 +77,7 @@ export default function SettingsScreen() {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['left', 'right', 'bottom']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <Card style={styles.headerCard}>
             <Card.Content style={styles.headerContent}>
@@ -154,18 +154,6 @@ export default function SettingsScreen() {
               <WeekUsage usage={weekUsage} />
             </Card.Content>
           </Card>
-
-          <Button
-            mode="contained"
-            icon="arrow-left"
-            onPress={() => router.back()}
-            buttonColor="#E7EEF6"
-            textColor="#2E6FB7"
-            style={styles.backButton}
-            contentStyle={styles.backContent}
-          >
-            Voltar para as crianças
-          </Button>
         </ScrollView>
       </SafeAreaView>
     </GradientBackground>
@@ -228,12 +216,5 @@ const styles = StyleSheet.create({
   sessionButton: {
     flex: 1,
     borderRadius: 16,
-  },
-  backButton: {
-    marginTop: 8,
-    borderRadius: 30,
-  },
-  backContent: {
-    height: 50,
   },
 });

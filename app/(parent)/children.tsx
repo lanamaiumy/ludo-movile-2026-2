@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button, Card, IconButton, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -80,14 +80,17 @@ export default function ChildrenScreen() {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.safe}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Crianças</Text>
-          <View style={styles.headerActions}>
-            <IconButton icon="cog" iconColor="#2E6FB7" onPress={() => router.push('/(parent)/settings')} />
-            <IconButton icon="logout" iconColor="#FF7A7A" onPress={handleLogout} />
-          </View>
-        </View>
+      <Stack.Screen
+        options={{
+          headerRight: () => (
+            <View style={styles.headerActions}>
+              <IconButton icon="cog" iconColor="#2E6FB7" onPress={() => router.push('/(parent)/settings')} />
+              <IconButton icon="logout" iconColor="#FF7A7A" onPress={handleLogout} />
+            </View>
+          ),
+        }}
+      />
+      <SafeAreaView style={styles.safe} edges={['left', 'right', 'bottom']}>
 
         <Button
           mode="contained"
@@ -136,17 +139,6 @@ const styles = StyleSheet.create({ // StyleSheet
   safe: {
     flex: 1, // flexbox
     paddingHorizontal: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingTop: 8,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#2E6FB7',
   },
   headerActions: {
     flexDirection: 'row',

@@ -51,7 +51,7 @@ export default function RegisterScreen() {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['left', 'right', 'bottom']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <Logo size={44} />
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 28,
-    paddingTop: 32,
+    paddingTop: 16,
     paddingBottom: 32,
   },
   header: {
