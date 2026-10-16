@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { AsyncStorageHelper } from '../helpers/AsyncStorageHelper';
-
-const TOKEN_KEY = 'auth_token';
+import useAuth from '../states/useAuth';
 
 const api = axios.create({
   baseURL: process.env.EXPO_PUBLIC_API_URL,
 });
 
-api.interceptors.request.use(async (config) => {
-  const token = await AsyncStorageHelper.getString(TOKEN_KEY);
+api.interceptors.request.use((config) => {
+  const token = useAuth.getState().token;
   if (token) {
     config.headers.Authorization = token;
   }

@@ -8,18 +8,19 @@ import Logo from '../../../components/Logo';
 import Mascot from '../../../components/Mascot';
 import AudioPlayer from '../../../components/AudioPlayer';
 import { scenarios } from '../../../src/data/scenarios';
-import { User } from '../../../src/types/User';
-import { useProgress } from '../../../src/contexts/ProgressContext';
+import useProgress from '../../../src/states/useProgress';
+import useAuth from '../../../src/states/useAuth';
 import { AsyncStorageHelper } from '../../../src/helpers/AsyncStorageHelper';
 
 const CHILD_KEY = 'child_name';
-const USER_KEY = 'auth_user';
 const VOLUME_KEY = 'max_volume';
 
 export default function ExerciseScreen() {
   const router = useRouter();
   const { scenarioId } = useLocalSearchParams<{ scenarioId: string }>();
-  const { markScenarioCompleted, addSession } = useProgress();
+  const markScenarioCompleted = useProgress((state) => state.markScenarioCompleted);
+  const addSession = useProgress((state) => state.addSession);
+  const user = useAuth((state) => state.user);
 
   const scenario = useMemo(() => scenarios.find((item) => item.id === scenarioId), [scenarioId]);
   const sound = scenario?.sounds[0];
@@ -33,27 +34,26 @@ export default function ExerciseScreen() {
   useEffect(() => {
     async function loadConfig() {
       const name = await AsyncStorageHelper.getString(CHILD_KEY);
-      const storedUser = await AsyncStorageHelper.getObject<User>(USER_KEY);
       const savedVolume = await AsyncStorageHelper.getNumber(VOLUME_KEY);
       if (name) {
         setChildName(name);
-      } else if (storedUser?.childName) {
-        setChildName(storedUser.childName);
+      } else if (user?.childName) {
+        setChildName(user.childName);
       }
       if (savedVolume !== null) {
         setMaxVolume(savedVolume);
       }
     }
     loadConfig();
-  }, []);
+  }, [user]);
 
-  async function handleComplete() {
+  function handleComplete() {
     if (finished || !scenario || !sound) {
       return;
     }
     setFinished(true);
-    await markScenarioCompleted(scenario.id);
-    await addSession({
+    markScenarioCompleted(scenario.id);
+    addSession({
       date: new Date().toISOString(),
       scenarioId: scenario.id,
       soundId: sound.id,

@@ -12,15 +12,15 @@ import JourneyTrail from '../../components/JourneyTrail';
 // de acordo com o que o useProgress() nos retorna na variavel const completedScenarios
 import { scenarios } from '../../src/data/scenarios';
 import { Scenario } from '../../src/types/Scenario';
-import { useProgress } from '../../src/contexts/ProgressContext'; //useProgress()
-import { useAuth } from '../../src/contexts/AuthContext';
+import useProgress from '../../src/states/useProgress'; //useProgress()
+import useAuth from '../../src/states/useAuth';
 
 // essa é a rota de telas das crianças, é aqui que montamos nossa página com os componentes
 
 export default function JourneyScreen() {
   const router = useRouter();
-  const { completedScenarios } = useProgress();
-  const { token } = useAuth();
+  const completedScenarios = useProgress((state) => state.completedScenarios);
+  const token = useAuth((state) => state.token);
 
   function openParentArea() {
     if (token) {

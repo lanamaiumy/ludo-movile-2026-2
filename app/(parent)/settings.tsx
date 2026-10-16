@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { ScrollView, StyleSheet, View } from 'react-native';
@@ -9,8 +8,9 @@ import GradientBackground from '../../components/GradientBackground';
 import Mascot from '../../components/Mascot';
 import WeekUsage from '../../components/WeekUsage';
 import LabeledInput from '../../components/LabeledInput';
-import { useAuth } from '../../src/contexts/AuthContext';
-import { useProgress } from '../../src/contexts/ProgressContext';
+import useAuth from '../../src/states/useAuth';
+import useProgress from '../../src/states/useProgress';
+import { buildWeekUsage } from '../../src/helpers/weekUsage';
 import { AsyncStorageHelper } from '../../src/helpers/AsyncStorageHelper';
 import api from '../../src/services/api';
 import { notify } from '../../src/helpers/notify';
@@ -21,18 +21,12 @@ const CHILD_KEY = 'child_name';
 const SESSION_OPTIONS = [5, 10, 15];
 
 export default function SettingsScreen() {
-  const router = useRouter();
-  const { user, token, isLoading } = useAuth();
-  const { weekUsage } = useProgress();
+  const user = useAuth((state) => state.user);
+  const sessions = useProgress((state) => state.sessions);
+  const weekUsage = buildWeekUsage(sessions);
   const [childName, setChildName] = useState('');
   const [volume, setVolume] = useState(1);
   const [sessionTime, setSessionTime] = useState(10);
-
-  useEffect(() => {
-    if (!isLoading && !token) {
-      router.replace('/(parent)/login');
-    }
-  }, [isLoading, token, router]);
 
   useEffect(() => {
     async function loadSettings() {
