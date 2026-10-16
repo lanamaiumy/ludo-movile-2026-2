@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { ScrollView, StyleSheet } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientBackground from '../../components/GradientBackground';
 import LabeledInput from '../../components/LabeledInput';
@@ -57,10 +57,9 @@ export default function ChildFormScreen() {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.safe}>
+      <Stack.Screen options={{ title: isEditing ? 'Editar criança' : 'Nova criança' }} />
+      <SafeAreaView style={styles.safe} edges={['left', 'right', 'bottom']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          <Text style={styles.title}>{isEditing ? 'Editar criança' : 'Nova criança'}</Text>
-
           <LabeledInput label="Nome" value={name} onChangeText={setName} placeholder="Ex.: Ana" />
           <LabeledInput
             label="Idade"
@@ -103,12 +102,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 24,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: '800',
-    color: '#2E6FB7',
-    marginBottom: 24,
   },
   submitButton: {
     borderRadius: 28,
