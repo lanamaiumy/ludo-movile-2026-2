@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientBackground from '../components/GradientBackground';
 import Logo from '../components/Logo';
 import Mascot from '../components/Mascot';
-import { useAuth } from '../src/contexts/AuthContext';
+import useAuth from '../src/states/useAuth';
 
 // utilizamos o router para que as URLs da aplicação sejam geradas, 
 // as rotas são iniciada à partir de app, subpastas a pasta app, 
@@ -14,7 +14,7 @@ import { useAuth } from '../src/contexts/AuthContext';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { token } = useAuth();
+  const token = useAuth((state) => state.token);
 
   function startJourney() {
     router.push('/(child)/journey');

@@ -6,21 +6,24 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientBackground from '../../components/GradientBackground';
 import Logo from '../../components/Logo';
 import LabeledInput from '../../components/LabeledInput';
-import { useAuth } from '../../src/contexts/AuthContext';
+import useAuth from '../../src/states/useAuth';
+import { authenticate } from '../../src/services/auth';
 import { notify } from '../../src/helpers/notify';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { login, token, isLoading } = useAuth();
+  const token = useAuth((state) => state.token);
+  const hasHydrated = useAuth((state) => state.hasHydrated);
+  const signIn = useAuth((state) => state.signIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && token) { // se temos um token armazenado no Async Storage, liberamos direto para /(parent)/sessions
+    if (hasHydrated && token) { // se temos um token armazenado no Async Storage, liberamos direto para /(parent)/sessions
       router.replace('/(parent)/children');
     }
-  }, [isLoading, token, router]);
+  }, [hasHydrated, token, router]);
 
   async function handleLogin() {
     if (!email.trim() || !password.trim()) {
@@ -29,7 +32,8 @@ export default function LoginScreen() {
     }
     setSubmitting(true);
     try {
-      await login(email.trim(), password);
+      const result = await authenticate(email.trim(), password);
+      signIn(result.token, result.user);
       router.replace('/(parent)/children'); //acesso liberado pós login()
     } catch (e) {
       notify('Não foi possível fazer login. Verifique seu email e senha.');

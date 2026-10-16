@@ -10,8 +10,6 @@ import {
 } from '@expo-google-fonts/plus-jakarta-sans';
 import { configureFonts, MD3LightTheme, PaperProvider } from 'react-native-paper'; // tema
 import { SafeAreaProvider } from 'react-native-safe-area-context'; // medidas seguras dos aparelhos
-import { AuthContextProvider } from '../src/contexts/AuthContext'; // estado de acesso dos pais
-import { ProgressContextProvider } from '../src/contexts/ProgressContext'; // progresso da criança
 
 // precisamos obrigatoriamente do _layout, são as regras de layout que 
 // vamos ter para qualquer página criada a partir do /app
@@ -58,20 +56,16 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
         <ThemeProvider value={navigationTheme}>
-          <AuthContextProvider>
-            <ProgressContextProvider>
-              <Stack // definimos se vamos empilhar uma tela por cima de outra com o stack
-                screenOptions={{
-                  headerShown: false, // definimos se teremos a barra de navegação ou não
-                  contentStyle: { backgroundColor: '#EAF4FF' },
-                }}
-              >
-                <Stack.Screen name="index" options={{ title: 'Início' }} />
-                <Stack.Screen name="(child)" options={{ title: 'Trilha' }} />
-                <Stack.Screen name="(parent)" options={{ title: 'Área dos Responsáveis' }} />
-              </Stack>
-            </ProgressContextProvider>
-          </AuthContextProvider>
+          <Stack // definimos se vamos empilhar uma tela por cima de outra com o stack
+            screenOptions={{
+              headerShown: false, // definimos se teremos a barra de navegação ou não
+              contentStyle: { backgroundColor: '#EAF4FF' },
+            }}
+          >
+            <Stack.Screen name="index" options={{ title: 'Início' }} />
+            <Stack.Screen name="(child)" options={{ title: 'Trilha' }} />
+            <Stack.Screen name="(parent)" options={{ title: 'Área dos Responsáveis' }} />
+          </Stack>
         </ThemeProvider>
       </PaperProvider>
     </SafeAreaProvider>

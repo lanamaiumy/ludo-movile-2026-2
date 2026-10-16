@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button, Card, IconButton, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientBackground from '../../components/GradientBackground';
-import { useAuth } from '../../src/contexts/AuthContext';
+import useAuth from '../../src/states/useAuth';
 import api from '../../src/services/api';
 import { notify } from '../../src/helpers/notify';
 
@@ -17,15 +17,18 @@ type ChildRecord = {
 
 export default function ChildrenScreen() {
   const router = useRouter();
-  const { user, token, isLoading: authLoading, logout } = useAuth();
+  const user = useAuth((state) => state.user);
+  const token = useAuth((state) => state.token);
+  const hasHydrated = useAuth((state) => state.hasHydrated);
+  const signOut = useAuth((state) => state.signOut);
   const [children, setChildren] = useState<ChildRecord[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!authLoading && !token) {
+    if (hasHydrated && !token) {
       router.replace('/(parent)/login');
     }
-  }, [authLoading, token, router]);
+  }, [hasHydrated, token, router]);
 
   // padrão para chamada api: await api.verbo(url, corpo/parametros) 
 
@@ -61,9 +64,9 @@ export default function ChildrenScreen() {
     }
   }
 
-  async function handleLogout() {
-    await logout();
+  function handleLogout() {
     router.replace('/');
+    signOut();
   }
 
   function editChild(item: ChildRecord) {

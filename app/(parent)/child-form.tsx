@@ -5,13 +5,13 @@ import { Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GradientBackground from '../../components/GradientBackground';
 import LabeledInput from '../../components/LabeledInput';
-import { useAuth } from '../../src/contexts/AuthContext';
+import useAuth from '../../src/states/useAuth';
 import api from '../../src/services/api';
 import { notify } from '../../src/helpers/notify';
 
 export default function ChildFormScreen() {
   const router = useRouter();
-  const { user } = useAuth();
+  const user = useAuth((state) => state.user);
   const params = useLocalSearchParams<{
     id?: string;
     name?: string;
