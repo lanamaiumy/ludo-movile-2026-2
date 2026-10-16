@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -77,6 +77,7 @@ export default function ExerciseScreen() {
 
   return (
     <GradientBackground>
+      <Stack.Screen options={{ title: scenario.name }} />
       <SafeAreaView style={styles.safe} edges={['top']}>
         <View style={styles.header}>
           <Logo size={26} />

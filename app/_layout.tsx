@@ -65,7 +65,11 @@ export default function RootLayout() {
                   headerShown: false, // definimos se teremos a barra de navegação ou não
                   contentStyle: { backgroundColor: '#EAF4FF' },
                 }}
-              />
+              >
+                <Stack.Screen name="index" options={{ title: 'Início' }} />
+                <Stack.Screen name="(child)" options={{ title: 'Trilha' }} />
+                <Stack.Screen name="(parent)" options={{ title: 'Área dos Responsáveis' }} />
+              </Stack>
             </ProgressContextProvider>
           </AuthContextProvider>
         </ThemeProvider>
