@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 import Slider from '@react-native-community/slider';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Card, Text } from 'react-native-paper';
@@ -22,21 +21,12 @@ const CHILD_KEY = 'child_name';
 const SESSION_OPTIONS = [5, 10, 15];
 
 export default function SettingsScreen() {
-  const router = useRouter();
   const user = useAuth((state) => state.user);
-  const token = useAuth((state) => state.token);
-  const hasHydrated = useAuth((state) => state.hasHydrated);
   const sessions = useProgress((state) => state.sessions);
   const weekUsage = buildWeekUsage(sessions);
   const [childName, setChildName] = useState('');
   const [volume, setVolume] = useState(1);
   const [sessionTime, setSessionTime] = useState(10);
-
-  useEffect(() => {
-    if (hasHydrated && !token) {
-      router.replace('/(parent)/login');
-    }
-  }, [hasHydrated, token, router]);
 
   useEffect(() => {
     async function loadSettings() {

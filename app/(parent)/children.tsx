@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button, Card, IconButton, Text } from 'react-native-paper';
@@ -18,17 +18,9 @@ type ChildRecord = {
 export default function ChildrenScreen() {
   const router = useRouter();
   const user = useAuth((state) => state.user);
-  const token = useAuth((state) => state.token);
-  const hasHydrated = useAuth((state) => state.hasHydrated);
   const signOut = useAuth((state) => state.signOut);
   const [children, setChildren] = useState<ChildRecord[]>([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (hasHydrated && !token) {
-      router.replace('/(parent)/login');
-    }
-  }, [hasHydrated, token, router]);
 
   // padrão para chamada api: await api.verbo(url, corpo/parametros) 
 
