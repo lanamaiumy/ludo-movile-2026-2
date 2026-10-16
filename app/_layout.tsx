@@ -1,3 +1,4 @@
+import '../global.css';
 import { DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { Appearance } from 'react-native'; // fonte importada
 import {
